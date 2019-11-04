@@ -388,7 +388,7 @@ open class PetAPI {
      - parameter petId: (path) ID of pet to update      - parameter body: (body)  (optional)
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func uploadFile(petId: Int64, body: Object? = nil, completion: @escaping ((_ data: ApiResponse?,_ error: Error?) -> Void)) {
+    open class func uploadFile(petId: Int64, body: Any? = nil, completion: @escaping ((_ data: ApiResponse?,_ error: Error?) -> Void)) {
         uploadFileWithRequestBuilder(petId: petId, body: body).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
@@ -410,7 +410,7 @@ open class PetAPI {
 
      - returns: RequestBuilder<ApiResponse> 
      */
-    open class func uploadFileWithRequestBuilder(petId: Int64, body: Object? = nil) -> RequestBuilder<ApiResponse> {
+    open class func uploadFileWithRequestBuilder(petId: Int64, body: Any? = nil) -> RequestBuilder<ApiResponse> {
         var path = "/pet/{petId}/uploadImage"
         let petIdPreEscape = "\(petId)"
         let petIdPostEscape = petIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
